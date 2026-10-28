@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 DESLOCAMENTO = 3
@@ -11,6 +12,15 @@ def cesar(texto, deslocamento):
         else:
             resultado += letra
     return resultado
+
+mensagem = os.environ.get("MENSAGEM", "").strip()
+
+if mensagem:
+    original = mensagem
+else:
+    original = Path("entrada/mensagem.txt").read_text(encoding="utf-8")
+
+codificado = cesar(original, DESLOCAMENTO)
 
 
 original = Path("entrada/mensagem.txt").read_text(encoding="utf-8")
