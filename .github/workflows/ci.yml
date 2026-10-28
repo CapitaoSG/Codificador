@@ -5,6 +5,12 @@ on:
     branches: [main, develop]
   pull_request:
     branches: [main, develop]
+  workflow_dispatch:
+    inputs:
+      mensagem:
+        description: "Mensagem para codificar"
+        required: false
+        default: ""
 
 jobs:
   codificar:
@@ -19,6 +25,8 @@ jobs:
           python-version: "3.12"
 
       - name: Rodar César
+        env:
+          MENSAGEM: ${{ inputs.mensagem }}
         run: python scripts/cesar.py
 
       - name: Guardar resultado
