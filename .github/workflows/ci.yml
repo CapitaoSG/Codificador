@@ -11,6 +11,14 @@ on:
         description: "Mensagem para codificar"
         required: false
         default: ""
+      tipo:
+        description: "Tipo de codificação"
+        type: choice
+        required: true
+        default: cesar
+        options:
+          - cesar
+          - base64
 
 jobs:
   codificar:
@@ -24,10 +32,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Rodar César
+      - name: Rodar codificador
         env:
           MENSAGEM: ${{ inputs.mensagem }}
-        run: python scripts/cesar.py
+          TIPO: ${{ inputs.tipo }}
+        run: python scripts/codificar.py
 
       - name: Guardar resultado
         uses: actions/upload-artifact@v4
