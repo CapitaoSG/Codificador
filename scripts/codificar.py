@@ -24,6 +24,7 @@ else:
     raise SystemExit(f"Tipo de codificação desconhecido: {tipo}")
 
 Path("saida/mensagem_codificada.txt").write_text(codificado, encoding="utf-8")
+Path("saida/mensagem_original.txt").write_text(original, encoding="utf-8")
 Path("saida/chave.txt").write_text(str(chave), encoding="utf-8")
 Path("saida/tipo.txt").write_text(tipo, encoding="utf-8")
 
