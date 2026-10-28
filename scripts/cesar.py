@@ -22,10 +22,6 @@ else:
 
 codificado = cesar(original, DESLOCAMENTO)
 
-
-original = Path("entrada/mensagem.txt").read_text(encoding="utf-8")
-codificado = cesar(original, DESLOCAMENTO)
-
 Path("saida/mensagem_codificada.txt").write_text(codificado, encoding="utf-8")
 
 print("Texto original:", original)
