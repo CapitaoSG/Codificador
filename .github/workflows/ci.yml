@@ -43,3 +43,30 @@ jobs:
         with:
           name: mensagem-codificada
           path: saida/
+          
+  decodificar:
+    needs: codificar
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Baixar resultado da codificação
+        uses: actions/download-artifact@v4
+        with:
+          name: mensagem-codificada
+          path: saida/
+
+      - name: Rodar decodificador
+        run: python scripts/decodificar.py
+
+      - name: Guardar mensagem decodificada
+        uses: actions/upload-artifact@v4
+        with:
+          name: mensagem-decodificada
+          path: saida/mensagem_decodificada.txt  
