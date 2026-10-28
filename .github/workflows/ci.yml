@@ -1,0 +1,28 @@
+name: Pipeline Codificador
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  codificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rodar César
+        run: python scripts/cesar.py
+
+      - name: Guardar resultado
+        uses: actions/upload-artifact@v4
+        with:
+          name: mensagem-codificada
+          path: saida/mensagem_codificada.txt
